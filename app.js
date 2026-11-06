@@ -89,9 +89,8 @@ function render(){if(page==='payment'){document.body.innerHTML=header()+payment(
 render();
 function refreshHomeProducts(){const params=new URLSearchParams(location.search),category=params.get('category')||'全部商品',list=catalogProducts(category),info=pageDetails(list.length,params.get('page'));document.querySelectorAll('[data-filter]').forEach(b=>{const active=b.dataset.filter===category;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});$('#productgrid').innerHTML=list.length?list.slice(info.start,info.start+PRODUCTS_PER_PAGE).map((p,i)=>card(p,i)).join(''):'<p class="empty">没有找到对应商品，请换个名称搜索。</p>';const count=$('#resultcount');if(count)count.textContent=list.length+' 件商品';$('#productPagination').innerHTML=pagination(info.current,info.pages,n=>homePageUrl(category,n),true)}
 window.addEventListener('popstate',()=>{if(page==='home')refreshHomeProducts()});
-// Warm category thumbnails on intent, without competing with initial page loading.
 const warmedCategories=new Set();
-function warmCategory(category){if(warmedCategories.has(category))return;warmedCategories.add(category);catalogProducts(category).slice(0,20).forEach(p=>{const img=new Image();img.fetchPriority='low';img.src=thumb(p)})}
+function warmCategory(category){if(warmedCategories.has(category))return;warmedCategories.add(category);catalogProducts(category).slice(0,12).forEach(p=>{const img=new Image();img.fetchPriority='low';img.src=thumb(p)})}
 document.addEventListener('pointerover',e=>{const b=e.target.closest('[data-filter]');if(b)warmCategory(b.dataset.filter)},{passive:true});
 document.addEventListener('touchstart',e=>{const b=e.target.closest('[data-filter]');if(b)warmCategory(b.dataset.filter)},{passive:true});
 document.addEventListener('click',e=>{

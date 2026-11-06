@@ -91,6 +91,15 @@ function refreshHomeProducts(){const params=new URLSearchParams(location.search)
 window.addEventListener('popstate',()=>{if(page==='home')refreshHomeProducts()});
 const warmedCategories=new Set();
 function warmCategory(category){if(warmedCategories.has(category))return;warmedCategories.add(category);catalogProducts(category).slice(0,12).forEach(p=>{const img=new Image();img.fetchPriority='low';img.src=thumb(p)})}
+// Warm a small number of thumbnails at a time after initial load.
+function warmIdleThumbnails(){
+ const c=navigator.connection;if(c&&(c.saveData||/^(slow-2g|2g)$/.test(c.effectiveType||'')))return;
+ const urls=[...new Set(products.map(p=>thumb(p)).filter(Boolean))];let next=0;
+ function worker(){if(next>=urls.length||document.hidden)return;const img=new Image();img.fetchPriority='low';img.onload=img.onerror=()=>setTimeout(worker,120);img.src=urls[next++]}
+ worker();worker();
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){worker();worker()}},{once:true});
+}
+if(page==='home')window.addEventListener('load',()=>setTimeout(warmIdleThumbnails,2500),{once:true});
 document.addEventListener('pointerover',e=>{const b=e.target.closest('[data-filter]');if(b)warmCategory(b.dataset.filter)},{passive:true});
 document.addEventListener('touchstart',e=>{const b=e.target.closest('[data-filter]');if(b)warmCategory(b.dataset.filter)},{passive:true});
 document.addEventListener('click',e=>{

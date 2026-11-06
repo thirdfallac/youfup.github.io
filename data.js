@@ -3687,39 +3687,39 @@ window.SHOP = {
       "price": 138.67,
       "currency": "USD",
       "count": "15ml",
-      "intro": "性记士多是一间位於 葵芳葵涌广场 的专业 性商店 ，专营各类高质素 成人用品 、 情趣玩具 、 性玩具 及 性健康产品 。我们明白私隐对客人的重要性，因此所有订单均采用 100% 保密无名包装寄出，助你安心选购心水产品。",
+      "intro": "",
       "tag": "女性催情产品",
       "tone": "#9d523d",
       "gallery": [
         {
           "src": "assets/uploads/f09341e43f8cc2519e3c418682557d18300c815886d27978146a9ec27cb0e434.gif",
-          "alt": "日本MISTINA 天使の淚 鑽石催情口服液",
-          "thumbSrc": "assets/uploads/7e3b71504c02127964b4cb18cd93d559d2c0adaa41b845c4532a0310064f96b1.webp"
+          "thumbSrc": "assets/uploads/7e3b71504c02127964b4cb18cd93d559d2c0adaa41b845c4532a0310064f96b1.webp",
+          "alt": "日本MISTINA 天使の淚 鑽石催情口服液"
         },
         {
           "src": "assets/uploads/05a2261792b0e8cd03aea4cdd17a7f4b42c226b41943e1663c2e15f9cdbbc0eb.jpg",
-          "alt": "日本MISTINA 天使の淚 鑽石催情口服液",
-          "thumbSrc": "assets/uploads/bc2d15d3a6275cc65c7a77ba581c10af1eac2599e1a16f3fe97d8bb9a4f93320.webp"
+          "thumbSrc": "assets/uploads/bc2d15d3a6275cc65c7a77ba581c10af1eac2599e1a16f3fe97d8bb9a4f93320.webp",
+          "alt": "日本MISTINA 天使の淚 鑽石催情口服液"
         },
         {
           "src": "assets/uploads/2e31ad2640fd3e4fb422d0a7f8cb7b3da5d97822727f6cab7561e177784f6c7c.jpg",
-          "alt": "日本MISTINA 天使の淚 鑽石催情口服液",
-          "thumbSrc": "assets/uploads/3bb085bd8ba25afafa9a4fc8cfb8cbea5f4be1801220dc7e058a989849ff4350.webp"
+          "thumbSrc": "assets/uploads/3bb085bd8ba25afafa9a4fc8cfb8cbea5f4be1801220dc7e058a989849ff4350.webp",
+          "alt": "日本MISTINA 天使の淚 鑽石催情口服液"
         },
         {
           "src": "assets/uploads/3b15e9c4c98a8b0305087ce07a688116a5096f73423d07ebf7b1313652183255.gif",
-          "alt": "日本MISTINA 天使の淚 鑽石催情口服液",
-          "thumbSrc": "assets/uploads/5dbb6a61f246cd0cdac03f83340acf1c71478babe38f797cf1adb5b321f9d472.webp"
+          "thumbSrc": "assets/uploads/5dbb6a61f246cd0cdac03f83340acf1c71478babe38f797cf1adb5b321f9d472.webp",
+          "alt": "日本MISTINA 天使の淚 鑽石催情口服液"
         },
         {
           "src": "assets/uploads/551ba6507e961aabf2ef59b28494b83de63ea05ef6e18ad697e0ab22804cf6b3.jpg",
-          "alt": "日本MISTINA 天使の淚 鑽石催情口服液",
-          "thumbSrc": "assets/uploads/c2df6489beebd491689e836ebbff4923a9b1af83dd32caa8587f62dfb89b39cf.webp"
+          "thumbSrc": "assets/uploads/c2df6489beebd491689e836ebbff4923a9b1af83dd32caa8587f62dfb89b39cf.webp",
+          "alt": "日本MISTINA 天使の淚 鑽石催情口服液"
         },
         {
           "src": "assets/uploads/084e3a187574441aa10bbe34be6e9fedeb6198dbe76fc5fdb6355dee4866583a.jpg",
-          "alt": "日本MISTINA 天使の淚 鑽石催情口服液",
-          "thumbSrc": "assets/uploads/0fcd165e47ef8deeb46d0a307a99d10ced45f9bc6889acfcf2133b2139cab064.webp"
+          "thumbSrc": "assets/uploads/0fcd165e47ef8deeb46d0a307a99d10ced45f9bc6889acfcf2133b2139cab064.webp",
+          "alt": "日本MISTINA 天使の淚 鑽石催情口服液"
         }
       ],
       "detailBlocks": [

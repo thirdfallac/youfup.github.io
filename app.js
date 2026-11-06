@@ -21,7 +21,7 @@ function footer(){return `<footer><div class="wrap"><section class="deliveryserv
 function toast(msg){$('.toast')?.remove();const t=document.createElement('div');t.className='toast';t.role='status';t.textContent=msg;document.body.append(t);setTimeout(()=>t.remove(),2600)}
 function add(id,qty){let item=cart.find(i=>i.id===id);if(item)item.qty=Math.min(99,item.qty+qty);else cart.push({id,qty});save();toast('已加入购物车')}
 function quantity(id,qty){return `<div class="quantity" data-qty="${esc(id)}"><button type="button" data-step="-1" aria-label="减少数量">−</button><input aria-label="商品数量" type="number" min="1" max="99" value="${qty}"><button type="button" data-step="1" aria-label="增加数量">＋</button></div>`}
-function card(p,index=99){const count=p.count&&!/^(规格待填写|规格待核对)$/.test(p.count.trim())?p.count:'';return `<article><a class="cardimage" style="display:block" href="product-${p.id}.html"><img src="${thumb(p)}" alt="${p.name}" ${index<8?'loading="eager"':'loading="lazy"'} decoding="async" width="600" height="570"></a><div class="cardmeta"><h3><a href="product-${p.id}.html">${p.name}</a></h3>${count?`<p>${count}</p>`:''}<div class="cardbottom"><span class="price">${money(p.price)}</span><button class="quickadd" data-card-add="${p.id}" aria-label="将${p.name}加入购物车">＋ 加购</button></div></div></article>`}
+function card(p,index=99){const count=p.count&&!/^(规格待填写|规格待核对)$/.test(p.count.trim())?p.count:'';return `<article><a class="cardimage" style="display:block" href="product-${p.id}.html"><img src="${thumb(p)}" alt="${p.name}" ${index<12?'loading="eager"':'loading="lazy"'} decoding="async" width="600" height="570"></a><div class="cardmeta"><h3><a href="product-${p.id}.html">${p.name}</a></h3>${count?`<p>${count}</p>`:''}<div class="cardbottom"><span class="price">${money(p.price)}</span><button class="quickadd" data-card-add="${p.id}" aria-label="将${p.name}加入购物车">＋ 加购</button></div></div></article>`}
 function catalogProducts(category){const q=(new URLSearchParams(location.search).get('q')||'').trim().toLowerCase();const key=category&&category!=='全部商品'?'categoryPin':'homePin';return products.filter(p=>(!category||category==='全部商品'||p.categoriesRaw.includes(category))&&(!q||(p.nameRaw+p.categoriesRaw.join(' ')).toLowerCase().includes(q))).sort((a,b)=>(Number(b[key])||0)-(Number(a[key])||0))}
 const PRODUCTS_PER_PAGE=20;
 function pageDetails(total,requested){const pages=Math.max(1,Math.ceil(total/PRODUCTS_PER_PAGE));const number=Number(requested);const current=Number.isFinite(number)?Math.max(1,Math.min(pages,Math.floor(number)||1)):1;return {current,pages,start:(current-1)*PRODUCTS_PER_PAGE}}
@@ -94,12 +94,12 @@ function warmCategory(category){if(warmedCategories.has(category))return;warmedC
 // Warm a small number of thumbnails at a time after initial load.
 function warmIdleThumbnails(){
  const c=navigator.connection;if(c&&(c.saveData||/^(slow-2g|2g)$/.test(c.effectiveType||'')))return;
- const urls=[...new Set(products.map(p=>thumb(p)).filter(Boolean))];let next=0;
+ const priority=allCategories().flatMap(category=>catalogProducts(category).slice(0,8));const urls=[...new Set([...priority,...products].map(p=>thumb(p)).filter(Boolean))];let next=0;
  function worker(){if(next>=urls.length||document.hidden)return;const img=new Image();img.fetchPriority='low';img.onload=img.onerror=()=>setTimeout(worker,120);img.src=urls[next++]}
- worker();worker();
+ worker();worker();worker();
  document.addEventListener('visibilitychange',()=>{if(!document.hidden){worker();worker()}},{once:true});
 }
-if(page==='home')window.addEventListener('load',()=>setTimeout(warmIdleThumbnails,2500),{once:true});
+if(page==='home')window.addEventListener('load',()=>setTimeout(warmIdleThumbnails,100),{once:true});
 document.addEventListener('pointerover',e=>{const b=e.target.closest('[data-filter]');if(b)warmCategory(b.dataset.filter)},{passive:true});
 document.addEventListener('touchstart',e=>{const b=e.target.closest('[data-filter]');if(b)warmCategory(b.dataset.filter)},{passive:true});
 document.addEventListener('click',e=>{

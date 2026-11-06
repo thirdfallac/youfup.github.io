@@ -30,7 +30,7 @@ function renderProductDetails(blocks, productName){
  let html='',group=[];
  function flush(){if(!group.length)return;html+='<div class="longdetailtext detailcopy">'+group.join('')+'</div>';group=[]}
  for(const r of records){
-  if(r.type==='image'){flush();const animated=/\.gif(?:$|[?#])/i.test(r.src)||/\.png(?:$|[?#])/i.test(r.src);const preview=animated?r.src:(r.thumbSrc||r.src);html+=`<div class="longdetailimage"><a href="/${r.src}" target="_blank" rel="noopener" aria-label="打开原图"><img src="/${preview}" alt="${r.alt||productName}" loading="lazy" decoding="async"></a></div>`;continue}
+  if(r.type==='image'){flush();const animated=/\.gif(?:$|[?#])/i.test(r.src)||/\.png(?:$|[?#])/i.test(r.src);const preview=animated?r.src:(r.thumbSrc||r.src);html+=`<div class="longdetailimage"><img src="/${preview}" alt="${r.alt||productName}" loading="lazy" decoding="async"></div>`;continue}
   if(r.title)group.push(`<h3>${r.title}</h3>`);
   const paras=r.text.split(/\n\s*\n/).filter(Boolean);
   paras.forEach((p,i)=>{const tag=!r.title&&paras.length===1&&p.length<=40&&/[：:]$/.test(p)?'h3':'p';group.push(`<${tag}>${p.replace(/\n/g,'<br>')}${i===paras.length-1&&r.marks.size?`<span class="detailmarks" aria-label="条目标记">${[...r.marks].join(' ')}</span>`:''}</${tag}>`)});
